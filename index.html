@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReWear - Community Clothing Exchange</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">ReWear</div>
+                <div class="nav-links">
+                    <a href="#" onclick="showPage('landing')">Home</a>
+                    <a href="#" onclick="showPage('browse')">Browse</a>
+                    <a href="#" onclick="showPage('dashboard')" id="dashboardLink" style="display: none;">Dashboard</a>
+                    <a href="#" onclick="showPage('admin')" id="adminLink" style="display: none;">Admin</a>
+                </div>
+                <div>
+                    <button class="btn" onclick="showPage('login')" id="loginBtn">Login</button>
+                    <button class="btn btn-secondary" onclick="logout()" id="logoutBtn" style="display: none;">Logout</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Landing Page -->
+        <div id="landing" class="page active">
+            <div class="hero">
+                <h1>ReWear <br>Upgrade the Style </h1>
+                <p>Join the sustainable fashion movement. Exchange, swap, and discover new-to-you clothing while reducing textile waste. <br> It's time upgrade your style with Rewear <br> Save money with Rewear</p>
+                <div class="cta-buttons">
+                    <button class="btn" onclick="showPage('browse')">Browse Items</button>
+                    <button class="btn btn-secondary" onclick="showPage('add-item')">List an Item</button>
+                    <button class="btn" onclick="showPage('login')">Start Swapping</button>
+                </div>
+            </div>
+
+            <div class="featured-items">
+                <h2>Featured Items</h2>
+                <div class="items-grid" id="featuredGrid">
+                    <!-- Featured items will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Browse Items Page -->
+        <div id="browse" class="page">
+            <div class="dashboard">
+                <h2>Browse Items</h2>
+                <div class="items-grid" id="browseGrid">
+                    <!-- Browse items will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login" class="page">
+            <div class="form-container">
+                <h2>Login to ReWear</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p style="margin-top: 1rem; text-align: center;">
+                    Don't have an account? <a href="#" onclick="showPage('signup')">Sign up</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signup" class="page">
+            <div class="form-container">
+                <h2>Join ReWear</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <p style="margin-top: 1rem; text-align: center;">
+                    Already have an account? <a href="#" onclick="showPage('login')">Login</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page">
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <div class="user-info">
+                        <div class="avatar" id="userAvatar">U</div>
+                        <div>
+                            <h3 id="userName">User Name</h3>
+                            <p>Points: <span id="userPoints">0</span></p>
+                        </div>
+                    </div>
+                    <button class="btn" onclick="showPage('add-item')">Add New Item</button>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>My Items</h3>
+                        <div id="myItems">
+                            <!-- User's items will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Ongoing Swaps</h3>
+                        <div id="ongoingSwaps">
+                            <p>No active swaps</p>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Completed Swaps</h3>
+                        <div id="completedSwaps">
+                            <p>No completed swaps yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Item Page -->
+        <div id="add-item" class="page">
+            <div class="form-container">
+                <h2>Add New Item</h2>
+                <form id="addItemForm">
+                    <div class="form-group">
+                        <label for="itemTitle">Title</label>
+                        <input type="text" id="itemTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemDescription">Description</label>
+                        <textarea id="itemDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Category</label>
+                        <select id="itemCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="tops">Tops</option>
+                            <option value="bottoms">Bottoms</option>
+                            <option value="dresses">Dresses</option>
+                            <option value="outerwear">Outerwear</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemSize">Size</label>
+                        <select id="itemSize" required>
+                            <option value="">Select Size</option>
+                            <option value="xs">XS</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                            <option value="xxl">XXL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCondition">Condition</label>
+                        <select id="itemCondition" required>
+                            <option value="">Select Condition</option>
+                            <option value="excellent">Excellent</option>
+                            <option value="good">Good</option>
+                            <option value="fair">Fair</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemTags">Tags (comma separated)</label>
+                        <input type="text" id="itemTags" placeholder="e.g. casual, summer, cotton">
+                    </div>
+                    <button type="submit" class="btn">Submit Item</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Page -->
+        <div id="admin" class="page">
+            <div class="admin-panel">
+                <h2>Admin Panel</h2>
+                <div class="admin-actions">
+                    <button class="btn" onclick="loadPendingItems()">Pending Items</button>
+                    <button class="btn btn-secondary" onclick="loadAllItems()">All Items</button>
+                </div>
+                <div id="adminItems">
+                    <!-- Admin items will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Detail Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div id="itemDetails">
+                <!-- Item details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
