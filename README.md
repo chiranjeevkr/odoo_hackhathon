@@ -1,7 +1,7 @@
 # odoo_hackhathon
 odoo hackathon 
 
-problem statemnet 3 = ReWeare - community clothing exchange.
+problem statemnet 3 = ReWear - community clothing exchange.
 
 Team leader- Chiranjeev Kumar
 Email-id - kchiranjeev621@gmail.com
